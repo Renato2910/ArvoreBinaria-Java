@@ -62,4 +62,8 @@ public class ArvoreBinaria {
         posOrdem(no.getDir());
         System.out.println(no.getValor());
     }
+
+    public void remover() {
+
+    }
 }
