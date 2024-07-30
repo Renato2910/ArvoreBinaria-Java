@@ -7,14 +7,14 @@ public class ArvoreBinaria {
 
     public void inserir(int valor) {
         No novoNo = new No(valor);
-        if(this.raiz == null) {
+        if (this.raiz == null) {
             this.raiz = novoNo;
         } else {
             No atual = this.raiz;
             No pai = null;
             boolean esquerda = false;
-            while(atual != null) {
-                if(novoNo.getValor() < atual.getValor()) {
+            while (atual != null) {
+                if (novoNo.getValor() < atual.getValor()) {
                     pai = atual;
                     atual = atual.getEsq();
                     esquerda = true;
@@ -24,7 +24,7 @@ public class ArvoreBinaria {
                     esquerda = false;
                 }
             }
-            if(esquerda) {
+            if (esquerda) {
                 pai.setEsq(novoNo);
             } else {
                 pai.setDir(novoNo);
@@ -37,7 +37,7 @@ public class ArvoreBinaria {
     }
 
     public void preOrdem(No no) {
-        if(no == null) {
+        if (no == null) {
             return;
         }
         System.out.println(no.getValor());
@@ -46,7 +46,7 @@ public class ArvoreBinaria {
     }
 
     public void emOrdem(No no) {
-        if(no == null) {
+        if (no == null) {
             return;
         }
         emOrdem(no.getEsq());
@@ -55,7 +55,7 @@ public class ArvoreBinaria {
     }
 
     public void posOrdem(No no) {
-        if(no == null) {
+        if (no == null) {
             return;
         }
         posOrdem(no.getEsq());
@@ -63,7 +63,28 @@ public class ArvoreBinaria {
         System.out.println(no.getValor());
     }
 
-    public void remover() {
 
+    public boolean remover(int valor) {
+        No atual = this.raiz;
+        No pai = this.raiz;
+        boolean isEsquerda = true;
+
+        // Encontrar o nó a ser removido
+        while (atual.getValor() != valor) {
+            pai = atual;
+            if (valor < atual.getValor()) {
+                isEsquerda = true;
+                atual = atual.getEsq();
+            } else {
+                isEsquerda = false;
+                atual = atual.getDir();
+            }
+            if (atual == null) {
+                System.out.println("O valor " + valor + " não foi encontrado na arvore!");
+                return false; // Nó não encontrado
+            }
+
+        }
+        return isEsquerda;
     }
 }
